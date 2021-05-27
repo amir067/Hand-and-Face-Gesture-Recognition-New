@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_margin="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/w3_fg" />
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="Helping You ! \nConverting text into speech"
+        android:fontFamily="@font/monts3"
+        android:textColor="@color/GradientB2"
+        android:textSize="16sp"/>
+    </LinearLayout>
+
+
+</FrameLayout>

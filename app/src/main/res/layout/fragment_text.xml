@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splashscreenmain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
+    tools:context=".ui.main.HomeActivity">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="60dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="12dp">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+            <EditText
+                android:paddingStart="10dp"
+                android:id="@+id/et_text_to_speach"
+                style="@style/Theme.MaterialComponents.NoActionBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:inputType="textPersonName"
+                android:hint="Enter Text to Speech"
+                android:textColorHint="@color/overlay_dark_40"
+                android:textSize="14sp" />
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="10dp"
+                android:id="@+id/activity_main_text"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:layout_gravity="center_horizontal"
+                android:text="Speech"
+                app:backgroundTint="@color/colorPrimary" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_tts"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:indeterminateOnly="true"
+            android:visibility="gone" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

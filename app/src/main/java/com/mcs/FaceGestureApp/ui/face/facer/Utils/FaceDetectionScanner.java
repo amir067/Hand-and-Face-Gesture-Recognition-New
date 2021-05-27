@@ -1,0 +1,39 @@
+package com.mcs.FaceGestureApp.ui.face.facer.Utils;
+
+/**
+ * Created by Amir.
+ */
+public class FaceDetectionScanner
+{
+    public static class Constants
+    {
+        public static final int PERMISSION_REQUEST_CAMERA = 1001;
+
+        public static final int FACING_BACK = 1;
+        public static final int FACING_FRONT = 0;
+
+        public static final int FLASH_OFF = 0;
+        public static final int FLASH_ON = 1;
+        public static final int FLASH_AUTO = 2;
+        public static final int FLASH_TORCH = 3;
+
+        public static final int FOCUS_OFF = 0;
+        public static final int FOCUS_CONTINUOUS = 1;
+        public static final int FOCUS_TAP = 2;
+        public static final int FOCUS_TAP_WITH_MARKER = 3;
+
+        public static final String KEY_CAMERA_PERMISSION_GRANTED="CAMERA_PERMISSION_GRANTED";
+
+    }
+
+    static class Defaults {
+        static final int DEFAULT_FACING = Constants.FACING_FRONT;
+        static final int DEFAULT_FLASH = Constants.FLASH_OFF;
+        static final int DEFAULT_FOCUS = Constants.FOCUS_CONTINUOUS;
+    }
+
+    public static class MessageStrings
+    {
+        public static final String ERROR_LOW_STORAGE="Face detection dependencies cannot be downloaded due to low device storage";
+    }
+}

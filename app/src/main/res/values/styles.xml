@@ -1,0 +1,44 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/ThemeColorTwo</item>
+        <item name="colorPrimaryDark">@color/ThemeColorOne</item>
+        <item name="colorAccent">@color/ThemeColorThree</item>
+    </style>
+
+    <style name="AppThemeNew" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#4DD0E1</item>
+        <item name="colorPrimaryDark">#4FC3F7</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">true</item>
+        <item name="android:statusBarColor">#00BCD4</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="LoginActivityTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/FDColorA1</item>
+        <item name="colorPrimaryDark">@color/FDColorA2</item>
+        <item name="colorAccent">@color/FDColorC1</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="LoginActivityTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppFullScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+
+
+
+</resources>

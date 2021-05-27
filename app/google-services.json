@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "368616244825",
+    "firebase_url": "https://face-gesture-recognition-app-default-rtdb.firebaseio.com",
+    "project_id": "face-gesture-recognition-app",
+    "storage_bucket": "face-gesture-recognition-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368616244825:android:63c7ac408d3dc2ffc09348",
+        "android_client_info": {
+          "package_name": "com.mcs.FaceGestureApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368616244825-4h3j5sdot0j1gua2iqn6dqq6il2kcboe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mcs.FaceGestureApp",
+            "certificate_hash": "530257d967923b7706b79471ba56d8c6817ab2ee"
+          }
+        },
+        {
+          "client_id": "368616244825-847uif7b6gotg7deb6fcipiol7kkgu6n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMEfITYAcUa6i_n_HzD6hsEDBXY7p03CM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368616244825-847uif7b6gotg7deb6fcipiol7kkgu6n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

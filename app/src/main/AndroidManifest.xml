@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.mcs.FaceGestureApp">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-feature android:name="android.hardware.camera.front" />
+
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Allows applications to open network sockets. -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Allows applications to access information about networks. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,LockedOrientationActivity">
+
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".ui.main.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppFullScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.play.WalkThrowActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew">
+
+        </activity>
+        <activity
+            android:name=".ui.auth.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginActivityTheme" />
+        <activity
+            android:name=".ui.main.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.auth.RegisterActivity"
+            android:parentActivityName=".ui.auth.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeNew" />
+        <activity
+            android:name=".ui.auth.ResetPsd"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.face.facer.FaceDetectionUtil.ScannerActivity" />
+        <activity android:name=".ui.face.facer.FaceEngineActivity" />
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="face" />
+    </application>
+
+</manifest>

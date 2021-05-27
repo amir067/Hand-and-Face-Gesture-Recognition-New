@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <item>
+        <shape>
+            <padding android:top="@dimen/_1sdp"/>
+            <solid android:color="#00cfd1d6"/>
+            <corners android:topLeftRadius="@dimen/pd_spacing_standard_new" android:topRightRadius="@dimen/pd_spacing_standard_new"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:top="@dimen/_1sdp"/>
+            <solid android:color="#05cfd1d6"/>
+            <corners android:topLeftRadius="@dimen/pd_spacing_standard_new" android:topRightRadius="@dimen/pd_spacing_standard_new"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:top="@dimen/_1sdp"/>
+            <solid android:color="#0acfd1d6"/>
+            <corners android:topLeftRadius="@dimen/pd_spacing_standard_new" android:topRightRadius="@dimen/pd_spacing_standard_new"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:top="@dimen/_1sdp"/>
+            <solid android:color="#0fcfd1d6"/>
+            <corners android:topLeftRadius="@dimen/pd_spacing_standard_new" android:topRightRadius="@dimen/pd_spacing_standard_new"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <padding android:top="@dimen/_1sdp"/>
+            <solid android:color="#14cfd1d6"/>
+            <corners android:topLeftRadius="@dimen/pd_spacing_standard_new" android:topRightRadius="@dimen/pd_spacing_standard_new"/>
+        </shape>
+    </item>
+    <item android:id="@+id/itemShape">
+        <shape>
+            <solid android:color="@color/pd_color_white"/>
+            <corners android:topLeftRadius="@dimen/pd_spacing_standard_new" android:topRightRadius="@dimen/pd_spacing_standard_new"/>
+        </shape>
+    </item>
+</layer-list>
