@@ -9,11 +9,16 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.mcs.FaceGestureApp.R;
 import com.mcs.FaceGestureApp.ui.face.facer.FaceDetectionUtil.ScannerActivity;
 import com.mcs.FaceGestureApp.ui.face.facer.FaceEngineActivity;
+import com.mcs.FaceGestureApp.ui.hand.MlKit.Camera2Activity;
+import com.mcs.FaceGestureApp.ui.main.HomeActivity;
+import com.mcs.FaceGestureApp.ui.main.MainActivity;
+import com.mcs.FaceGestureApp.ui.voice.STT;
 
 import static com.mcs.FaceGestureApp.ui.face.facer.Utils.Imageutils.SCANNER_REQUEST_CODE;
 
@@ -22,7 +27,10 @@ public class FaceFragment extends Fragment {
     private static final String TAG = "FaceFragment";
 
 
-    Button faceButton;
+    CardView faceGestureCardView;
+    CardView handGestureCardView;
+    CardView TTSCardView;
+    CardView STTCardView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.frag_face, container, false);
@@ -32,22 +40,53 @@ public class FaceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        faceButton = view.findViewById(R.id.button2);
+        faceGestureCardView = view.findViewById(R.id.faceGestureCardView);
+        handGestureCardView = view.findViewById(R.id.handGestureCardView);
+        TTSCardView = view.findViewById(R.id.TTSCardView);
+        STTCardView = view.findViewById(R.id.STTCardView);
 
-        faceButton.setOnClickListener(new View.OnClickListener() {
+
+        faceGestureCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
               //  startActivity(new Intent(requireContext(), FaceEngineActivity.class));
-                launchScanner();
+                launchFAceScanner();//faceGesture
+            }
+        });
+
+        handGestureCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //  startActivity(new Intent(requireContext(), FaceEngineActivity.class));
+                launchHandGesture();
+            }
+        });
+
+        TTSCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //  startActivity(new Intent(requireContext(), FaceEngineActivity.class));
+                ((HomeActivity)getActivity()).viewPager.setCurrentItem(1,true);
+            }
+        });
+        STTCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // startActivity(new Intent(requireContext(), STT.class));
+                ((HomeActivity)getActivity()).viewPager.setCurrentItem(2,true);
             }
         });
 
     }
 
 
-    public void launchScanner() {
+    public void launchFAceScanner() {
         Intent scannerIntent = new Intent(requireContext(), ScannerActivity.class);
         startActivityForResult( scannerIntent, SCANNER_REQUEST_CODE);
+    }
 
+    public void launchHandGesture() {
+        Intent scannerIntent = new Intent(requireContext(), Camera2Activity.class);
+        startActivity( scannerIntent);
     }
 }

@@ -23,6 +23,9 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.ibm.cloud.sdk.core.http.HttpConfigOptions;
+import com.ibm.cloud.sdk.core.security.BearerTokenAuthenticator;
+import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
@@ -101,17 +104,30 @@ public class VoiceFragment extends Fragment {
     }
 
     public void createSoundFile(String text, String voice) throws IOException {
+
         new APIClient(api.getAPI_Key(), api.getUrl());
-        TextToSpeech textToSpeech = new TextToSpeech( APIClient.getClient() );
+
+        HttpConfigOptions configOptions = new HttpConfigOptions.Builder()
+                //.disableSslVerification(true)
+                .loggingLevel(HttpConfigOptions.LoggingLevel.BODY)
+                .build();
+
+        TextToSpeech textToSpeech = new TextToSpeech(APIClient.getClient());
+        textToSpeech.configureClient(configOptions);
         textToSpeech.setServiceUrl(api.getUrl());
 
-        SynthesizeOptions synthesizeOptions = new SynthesizeOptions.Builder()
+        SynthesizeOptions synthesizeOptions = new SynthesizeOptions
+                .Builder()
                 .text(text)
                 .accept("audio/mp3")
                 .voice(voice)
                 .build();
 
-        InputStream inputStream = textToSpeech.synthesize(synthesizeOptions).execute().getResult();
+        InputStream inputStream = textToSpeech
+                .synthesize(synthesizeOptions)
+                .execute()
+                .getResult();
+
         InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
 
         String fileName = text + voice;
@@ -166,7 +182,7 @@ public class VoiceFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
     private API getAPIKey() {
-        DocumentReference docRef = db.collection("API").document("TTS");
+        DocumentReference docRef = db.collection("API").document("TTS2");
         docRef.get().addOnSuccessListener(documentSnapshot -> {
             if (!documentSnapshot.exists()) {
                 Log.d(TAG, "onSuccess: API KEY NOT FOUND");
@@ -174,6 +190,7 @@ public class VoiceFragment extends Fragment {
             }
             Log.e(TAG, "TTS API initialized :"+documentSnapshot.getId());
             api = documentSnapshot.toObject(API.class);
+            Log.e(TAG, "getAPIKey: result"+api.getAPI_Key() );
         }).addOnFailureListener(e -> {
             Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
             Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show();

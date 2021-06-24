@@ -16,18 +16,28 @@ limitations under the License.
 package com.mcs.FaceGestureApp.ui.hand.MlKit;
 
 import android.app.Activity;
+
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.mcs.FaceGestureApp.R;
 
 
 /** Main {@code Activity} clase para la aplicación de la cámara. */
-public class Camera2Activity extends Activity {
+public class Camera2Activity extends AppCompatActivity {
+  private static final String TAG = "Camera2Activity";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_camera);
+
+
+    Camera2BasicFragment mFragment =  new Camera2BasicFragment().newInstance();
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    fragmentManager.beginTransaction().replace(R.id.container, mFragment).commit();
 
   }
 }

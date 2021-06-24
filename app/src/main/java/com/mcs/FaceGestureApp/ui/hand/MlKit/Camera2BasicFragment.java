@@ -485,11 +485,12 @@ public class Camera2BasicFragment extends Fragment implements ActivityCompat.OnR
   @RequiresApi(api = Build.VERSION_CODES.M)
   private void openCamera(int width, int height) {
     if (!checkedPermissions && !allPermissionsGranted()) {
-      getTargetFragment().requestPermissions(getRequiredPermissions(), PERMISSIONS_REQUEST_CODE);
-      return;
+//      getTargetFragment().requestPermissions(getRequiredPermissions(), PERMISSIONS_REQUEST_CODE);
+  //    return;
     } else {
-      checkedPermissions = true;
     }
+    checkedPermissions = true;
+
     setUpCameraOutputs(width, height);
     configureTransform(width, height);
     Activity activity = getActivity();

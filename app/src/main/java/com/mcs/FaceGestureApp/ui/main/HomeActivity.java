@@ -1,7 +1,9 @@
 package com.mcs.FaceGestureApp.ui.main;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -26,6 +28,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -48,6 +52,11 @@ import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.mcs.FaceGestureApp.Api.API;
 import com.mcs.FaceGestureApp.Api.APIClient;
 import com.mcs.FaceGestureApp.R;
@@ -61,8 +70,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
+
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener , NavigationView.OnNavigationItemSelectedListener{
 
@@ -88,17 +101,31 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
-    private ViewPager viewPager;
+    public ViewPager viewPager;
+
+
+    private static final int STORAGE_PERMISSION_CODE = 123;
+    private static final int CAMERA_REQUEST = 1888;
+    private int REQUEST_CODE_PERMISSIONS = 1001;
+    private final String[] REQUIRED_PERMISSIONS = new String[]{CAMERA, WRITE_EXTERNAL_STORAGE};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         preferenceHelperDemo = new PreferenceHelperDemo(this);
-
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         Tools.setSystemBarTransparent(this);
         Tools.setSystemBarLight(this);
+        askPermissions();
+
+
+        if(hasCameraPermission()){
+            Log.e(TAG, "onCreate: all  Camera Permission granted");
+        }else{
+            ActivityCompat.requestPermissions(HomeActivity.this, REQUIRED_PERMISSIONS, CAMERA_REQUEST);
+        }
 
         AlphaAnimation dp_alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         dp_alphaAnimation.setDuration(2500);
@@ -121,8 +148,6 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-
         //Initializing the tablayout
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         //Initializing viewPager
@@ -136,10 +161,40 @@ public class HomeActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.setOnTabSelectedListener(this);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-
-
-
         //profile();
+
+    }
+
+    private boolean hasCameraPermission() {
+        // Ask for permission if it wasn't granted yet
+        return (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, CAMERA) == PackageManager.PERMISSION_GRANTED );
+    }
+
+    void askPermissions(){
+        Dexter.withActivity(this).withPermissions(
+                CAMERA,
+                Manifest.permission.ACCESS_MEDIA_LOCATION,
+                WRITE_EXTERNAL_STORAGE)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if(report.areAllPermissionsGranted()){
+                            Log.e(TAG, "onPermissionsChecked: all Permissions Granted" );
+                            //Toast.makeText(ConnectionActivity.this, "Permissions Granted", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            //Toast.makeText(HomeActivity.this, "I need these permissions...", Toast.LENGTH_SHORT).show();
+                            //askPermissions();
+                            ActivityCompat.requestPermissions(HomeActivity.this, REQUIRED_PERMISSIONS, CAMERA_REQUEST);
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                }).check();
     }
     @Override
     public void onBackPressed() {

@@ -53,7 +53,12 @@ android {
 }
 allprojects {
     repositories {
-        maven { url "https://maven.google.com" }
+        maven {
+            url "https://maven.google.com"
+        }
+        maven{
+            url "https://github.com/omadahealth/omada-nexus/raw/master/release"
+        }
         google()
         jcenter()
     }
@@ -279,7 +284,25 @@ dependencies {
     //implementation 'com.google.firebase:firebase-ml-vision:18.0.1'
 
 
+// dexter (permissions)
+    implementation 'com.karumi:dexter:4.2.0'
+    compile 'com.ibm.watson:ibm-watson:9.2.0'
 
+
+    //new
+    implementation 'uk.me.lewisdeane.ldialogs:ldialogs:1.2.0@aar'
+
+    implementation 'commons-io:commons-io:2.6'
+
+    implementation 'nl.dionsegijn:konfetti:1.1.0'
+
+    implementation 'net.gotev:speech:1.6.2'
+
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    implementation 'com.squareup:otto:1.3.8'
+
+    //Custom Toast
+    implementation 'com.github.GrenderG:Toasty:1.5.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

@@ -9,15 +9,17 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class APIClient {
 
+
     private static String API_KEY="";
     private static String API_URL="";
+    public  static IamAuthenticator authenticator = null;
 
     public APIClient(String API_KEY, String API_URL) {
         APIClient.API_KEY = API_KEY;
         APIClient.API_URL = API_URL;
     }
-    public static IamAuthenticator authenticator = null;
-    public static IamAuthenticator getClient() {
+
+    public static  IamAuthenticator getClient() {
         if (authenticator == null) {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
             httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

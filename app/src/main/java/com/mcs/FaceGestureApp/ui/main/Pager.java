@@ -43,8 +43,9 @@ public class Pager extends FragmentStatePagerAdapter {
                 VoiceFragment textFragment = new VoiceFragment();
                 return textFragment;
             case 2:
-                //HandFragment handFragment = new HandFragment();
-                return Camera2BasicFragment.newInstance();
+                HandFragment handFragment = new HandFragment();
+                return handFragment;
+                //return Camera2BasicFragment.newInstance();
             default:
                 return null;
         }
