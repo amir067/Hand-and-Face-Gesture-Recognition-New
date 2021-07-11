@@ -14,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import butterknife.BindView;
@@ -26,6 +28,10 @@ import com.mcs.FaceGestureApp.ui.main.HomeActivity;
 import com.mcs.FaceGestureApp.ui.main.MainActivity;
 import com.mcs.FaceGestureApp.utils.MyUtils;
 import com.mcs.FaceGestureApp.utils.Tools;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.mcs.FaceGestureApp.utils.MyUtils.isValidEmail;
 
@@ -88,7 +94,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         String username = rUsername.getText().toString();
         String email = rEmail.getText().toString();
-
         String password = rPassword.getText().toString();
 
 
@@ -126,7 +131,6 @@ public class RegisterActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 loading_dialog.dismiss();
 
-                /*
                // loading.setVisibility(View.GONE);
                 FirebaseUser firebaseUser = auth.getCurrentUser();
                 String userid = firebaseUser.getUid();
@@ -136,9 +140,9 @@ public class RegisterActivity extends AppCompatActivity {
                 register_user.put("email", email);
                 register_user.put("password", password);
                 register_user.put("username", username);
-                register_user.put("phone", phone);
-                register_user.put("created_at", new Date());
-                register_user.put("updated_at", new Date());
+               // register_user.put("phone", phone);
+                register_user.put("created_at", new Date().getTime());
+                register_user.put("updated_at", new Date().getTime());
                 register_user.put("imageURL", "default");
 
                 blogRef.set(register_user).addOnSuccessListener(aVoid -> {
@@ -151,11 +155,11 @@ public class RegisterActivity extends AppCompatActivity {
                    // loading.setVisibility(View.INVISIBLE);
                     Log.e(TAG, "onFailure: " + e.getLocalizedMessage());
 
-                });*/
+                });
 
-                Toasty.success(this,"Register Success",Toasty.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                RegisterActivity.this.finish();
+              //  Toasty.success(this,"Register Success",Toasty.LENGTH_SHORT).show();
+              //  startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+              //  RegisterActivity.this.finish();
 
 
             } else {

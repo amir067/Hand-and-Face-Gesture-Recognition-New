@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:368616244825:android:63c7ac408d3dc2ffc09348",
+        "mobilesdk_app_id": "1:368616244825:android:a29e020c0d6cd317c09348",
         "android_client_info": {
           "package_name": "com.mcs.FaceGestureApp"
         }
